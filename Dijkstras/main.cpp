@@ -15,12 +15,41 @@ int main(int argc, char* argv[]) {
         cerr << "Failed to load the graph." << endl;
         return 1;
     }
-    graph->printAdjacencyLists();
-
+    
     // Process queries until the "stop" query is received
-    /*
-    while (true) {
+    while(true) {
+        // Read the next query from the user
+        string query;
+        cin >> query;
 
+        // Check the type of query
+        if (query == "find") {
+            // Read source, destination, and flag from user
+            int source, destination, flag;
+            cin >> source;
+            cin >> destination;
+            cin >> flag;
+
+            // Run Dijkstra's algorithm on the graph
+            graph->runDijkstra(source, destination, flag);
+        }
+        else if(query == "write") {
+            // Read action, source, and destination from user
+            string action;
+            int source, destination;
+            cin >> action;
+            cin >> source;
+            cin >> destination;
+
+            // Write the path based on the action
+            graph->writePath(source, destination);
+        }
+        else if (query == "stop") {
+            // Exit the program
+            return 0;
+        }
+        else
+            // Invalid query, print an error message
+            cout << "Invalid query. Please use 'find', 'write', or 'stop'.";
     }
-    */
 }
