@@ -1,23 +1,39 @@
-#include <iostream>
-#include <string.h>
 #include "minheap.h"
-//#include "heap.h"
-//#include <vector>
 
-
-using namespace std;
-
-
-#define MAX 10000   //max number of queries
 
 MinHeap::MinHeap() {
     //set pointers to nullptr
     //set variables to default values
+    keys = nullptr;
+    values = nullptr;
+    capacity = 0;
+    size = 0;
 }
 
-bool MinHeap::empty() const {
-    //return true if size is 0, false otherwise
-    return size == 0;
+void MinHeap::init(int size) {
+    //set capacity and size
+    //allocate memory for keys(weights) and values(nodes)
+    capacity = size;
+    keys = new double[size];
+    values = new int[size];
+}
+
+void MinHeap::push(double key, int value) {
+    /*
+    if heap is full
+        return
+
+    increase size
+    set key and value at the end with index as size
+    heapify up
+    */
+    if (size == capacity) 
+        return;
+
+    size++;
+    keys[size - 1] = key;
+    values[size - 1] = value;
+    heapifyUp(size);            //inputs size in 0-index. GIVES THE VALUE IN THE ARRAY
 }
 
 int MinHeap::pop() {
@@ -34,61 +50,62 @@ int MinHeap::pop() {
     */
     if (empty()) {
         return -1;
+    }
+    int root = values[0];
+    values[0] = values[size - 1];
+    size--;
+    heapifyDown(0);
+
+    return root;
+}
+
+bool MinHeap::empty() const {
+    //return true if size is 0, false otherwise
+    return size == 0;
+}
+
+void MinHeap::heapifyUp(int index) {
+    /*
+    while index > 1 and current key is less than parent key (parent key is index / 2)
+        swap index with parent
+        update index to parent
+    */
+   while (index > 1 && keys[index] < keys[index/2]) {       //CHECK IF WRONG
+    swap(index, index/2);
+    index = index/2;
    }
-
 }
 
-void heapifyDown(long int arr[], int size, int element_index) {
-    // initialize root and child nodes
-    int largest = element_index;
-    int left_index  = 2 * element_index + 1;
-    int right_index = 2 * element_index + 2;
-
-    //check if left is larger than root
-    if (left_index < size && arr[left_index] > arr[largest]) {
-        largest = left_index;
+void MinHeap::heapifyDown(int index) {
+    /*
+    find the smallest child from left(2*index) or right(2*index+1) child of index
+    if smallest child is smaller than current key
+        swap with smallest child with index
+        update index
+        heapify down
+    */
+    int sIndex = 2 * index;
+    int smallest = keys[sIndex];
+    if (smallest > keys[sIndex + 1]) {
+        smallest = keys[2 * index + 1];
+        sIndex++;
     }
+        
 
-    //check right
-    if (right_index < size && arr[right_index] > arr[largest])
-        largest = right_index;
-
-    //check if largest is not root
-    if (largest != element_index) {
-        swap(arr[element_index], arr[largest]);
-        heapifyDown(arr, size, largest);
-    }
-}
-void heapifyUp(long int heap[], int element_index) {
-    int parent = (element_index - 1) / 2;
-    while (element_index > 0 && heap[element_index] > heap[parent]) {
-        swap(heap[element_index], heap[parent]);
-        element_index = parent;
-        parent = (element_index - 1) / 2;
+    if(smallest < keys[index]) {
+        swap(sIndex, index);
+        index++;
+        heapifyDown(index);
     }
 }
 
-void insert( long int heap[], int key) {
-    heap[10000] = key;
-    heapifyUp(heap, 10000);
-}
+void MinHeap::swap(int i, int j) {
+    //swap keys and values at positions i and j
+    double temp = keys[i];
+    keys[i] = keys[j];
+    keys[j] = temp;
 
-void deleteMax(long int heap[]) {
-    //check if empty
-    if (heap[0] == 0)
-        return;
-    //swap head with end, delete end, then fix heap
-    else {
-        swap(heap[0], heap[10000 - 1]);
-        heap[10000 - 1] = 0;
-        heapifyDown(heap, 10000, 0);
-    }
-}
-
-void printMax(long int heap[]) {
-    //check if empty
-    if (heap[0] != 0) 
-        cout << heap[0] << "\n";
-    else
-        cout << "\n";
+    int temp1 = values[i];
+    values[i] = values[j];
+    values[j] = temp1;
 }

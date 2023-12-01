@@ -2,6 +2,8 @@
 
 int main(int argc, char* argv[]) {
     // Extract graph filename and direction from command-line arguments
+    //string graphFilename = "network01.txt";
+    //string direction = "undirected";
     string graphFilename = argv[1];
     string direction = argv[2];
     

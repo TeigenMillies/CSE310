@@ -152,7 +152,7 @@ bool Graph::loadGraph (const string& filename, const string& direction) {
 
 void Graph::printAdjacencyLists() {
     // Loop through each vertex in the graph
-    for (int v = 0; v < numVertices - 1; v++) {
+    for (int v = 0; v < numVertices; v++) {
         cout << "Adjacency list for vertex " << v << ": ";
 
         // Check if the adjacency list for the current vertex exists
