@@ -33,7 +33,7 @@ void MinHeap::push(double key, int value) {
     size++;
     keys[size - 1] = key;
     values[size - 1] = value;
-    heapifyUp(size);            //inputs size in 0-index. GIVES THE VALUE IN THE ARRAY
+    heapifyUp(size - 1);            //inputs size in 0-index. GIVES THE VALUE IN THE ARRAY
 }
 
 int MinHeap::pop() {

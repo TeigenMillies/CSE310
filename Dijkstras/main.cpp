@@ -48,8 +48,10 @@ int main(int argc, char* argv[]) {
             // Exit the program
             return 0;
         }
+        else if (query == "plist")
+            graph->printAdjacencyLists();
         else
             // Invalid query, print an error message
-            cout << "Invalid query. Please use 'find', 'write', or 'stop'.";
+            cout << "Invalid query. Please use 'find', 'write', or 'stop'." << endl;
     }
 }

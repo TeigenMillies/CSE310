@@ -167,6 +167,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
         predecessor[i] = -1;
         distance[i] = DOUBLE_MAX;
     }
+    
 
     // Mark the source as extracted
     extracted[source] = true;
@@ -175,24 +176,27 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
     minHeap.init(n);
     distance[source] = 0;
     minHeap.push(0, source);
+    
+
 
     // If flag is set, print initial insertion
     if (flag == 1)
-        cout << "Insert vertex " << source << ", keys=" << distance[source];
+        cout << "Insert vertex " << source << ", key= " << distance[source] << endl;
 
     // Main Dijkstra's algorithm loop
     while(!minHeap.empty()) {
         // Extract the minimum distance vertex from the MinHeap
         int u = minHeap.pop();
-
+        
         // Mark the vertex as extracted
         extracted[u] = true;
         extractedVertices[u] = distance[u];
 
         // If flag is set, print deletion of vertex
         if (flag == 1)
-            cout << "Delete vertex " << u << ", keys=", distance[u];
+            cout << "Delete vertex " << u << ", key= " << distance[u] << endl;
 
+        
         // If the destination is reached, exit the loop
         if (u == destination)
             break;
@@ -207,6 +211,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
 
                 // If the neighbor is not extracted and relaxation is possible
                 if (!extracted[v] && distance[u] + w < distance[v]) {
+                    
                     // Perform relaxation
                     double oldDistance = distance[v];
                     distance[v] = distance[u] + w;
@@ -215,20 +220,21 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
 
                     // If flag is set, print decrease key operation
                     if (oldDistance != DOUBLE_MAX && flag == 1) 
-                        cout << "Decrease key of vertex " << v << ", from " << oldDistance << " to " << distance[v];
+                        cout << "Decrease key of vertex " << v << ", from " << oldDistance << " to " << distance[v] << endl;
 
                     // Push the neighbor into the MinHeap
                     minHeap.push(distance[v], v);
 
                     // If flag is set, print insertion of vertex
                     if (flag == 1)
-                        cout << "Insert vertex " << v << ", keys=" << distance[v];
+                        cout << "Insert vertex " << v << ", key= " << distance[v] << endl;
 
                 }
                 j++;
             }
         }
-    }
+    }   //end of main dijksttra loop
+    
     // Handle vertices left in MinHeap after the main loop
     while (!minHeap.empty()) {
         int u = minHeap.pop();
@@ -242,13 +248,13 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
 void Graph::writePath(int s, int d) {
     // Check if the graph has been traversed
     if (graphTraversed == false) {
-        cout << "Error: no path computation done";
+        cout << "Error: no path computation done" << endl;
         return;
     }
 
     // Check for valid source-destination pair
     if (s != source || d < 1 || d >= numVertices) {
-        cout << "Error: invalid source destination pair";
+        cout << "Error: invalid source destination pair" << endl;
         return;
     }
 
