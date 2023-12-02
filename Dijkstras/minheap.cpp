@@ -56,6 +56,7 @@ int MinHeap::pop() {
     }
     int root = values[0];
     values[0] = values[size - 1];
+    keys[0] = keys[size - 1];
     size--;
     heapifyDown(0);
     
@@ -88,6 +89,21 @@ void MinHeap::heapifyDown(int index) {
         update index
         heapify down
     */
+    int leftChild = 2 * index + 1;
+    int rightChild = 2 * index + 2;
+    int sIndex = index;
+
+    if (leftChild < size - 1 && keys[leftChild] < keys[sIndex])
+        sIndex = leftChild;
+
+    if (rightChild < size - 1 && keys[rightChild] < keys[sIndex])
+        sIndex = rightChild;
+
+    if (sIndex != index) {
+        swap(index, sIndex);
+        heapifyDown(sIndex);
+    }
+    /*
     int sIndex = 2 * index;
     int smallest = keys[sIndex];
     if (smallest > keys[sIndex + 1]) {
@@ -101,6 +117,7 @@ void MinHeap::heapifyDown(int index) {
         index++;
         heapifyDown(index);
     }
+    */
 }
 
 void MinHeap::swap(int i, int j) {

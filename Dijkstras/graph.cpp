@@ -201,8 +201,9 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
 
         // If flag is set, print deletion of vertex
         if (flag == 1) {
-            printf("Delete vertex %d", u);
-            printf(", key=%12.4f\n", distance[u]);
+            printf("Delete vertex %d, key=%12.4f\n", u, distance[u]);
+            //printf("Delete vertex %d", u);
+            //printf(", key=%12.4f\n", distance[u]);
             //minHeap.print();
         }
 
@@ -230,9 +231,8 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
 
                     // If flag is set, print decrease key operation
                     if (oldDistance != DOUBLE_MAX && flag == 1) {
-                        printf("Decrease key of vertex %d", v);
-                        printf(", from%13.4f", oldDistance);
-                        printf(" to%13.4f\n", distance[v]);
+                        printf("Decrease key of vertex %d, from%13.4f to%13.4f\n", v, oldDistance, distance[v]);
+                        //minHeap.print();
                         //cout << "Decrease key of vertex " << v << ", from " << oldDistance << " to " << distance[v] << endl;
                     }
 
@@ -250,11 +250,14 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
             }
         }
     }   //end of main dijksttra loop
+    //cout << "End of main dijstra loop" << endl;
+    //minHeap.print();
     
     // Handle vertices left in MinHeap after the main loop
     while (!minHeap.empty()) {
         int u = minHeap.pop();
-        if (extracted[u] == false)
+        
+        if (!extracted[u])
             fullTraversal = false;
     }
     // Deallocate memory for extracted array
