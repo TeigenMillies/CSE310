@@ -185,7 +185,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
     if (flag == 1) {
         printf("Insert vertex %d", source);
         printf(", key=%12.4f\n", distance[source]);
-        minHeap.print();
+        //minHeap.print();
         //cout << "Insert vertex " << source << ", key= " << distance[source] << endl;
     }
 
@@ -202,7 +202,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
         if (flag == 1) {
             printf("Delete vertex %d", u);
             printf(", key=%12.4f\n", distance[u]);
-            minHeap.print();
+            //minHeap.print();
         }
 
             //cout << "Delete vertex " << u << ", key= " << distance[u] << endl;
@@ -243,7 +243,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
                     // If flag is set, print insertion of vertex
                     if (flag == 1) {
                         printf("Insert vertex %d, key=%12.4f\n", v, distance[v]);
-                        minHeap.print();
+                        //minHeap.print();
                         //cout << "Insert vertex " << v << ", key= " << distance[v] << endl;
                     }
                 }
@@ -329,7 +329,7 @@ void Graph::writePath(int s, int d) {
         // Print the path not known to be the shortest
         printf("Path not known to be shortest: ");
         //cout << "Path not known to be shortest: ";
-        for(int i = pathSize; i > 0; i--) {
+        for(int i = pathSize; i >= 0; i--) {
             printf("%d ", path[i]);
             //cout << path[i] << " ";
         }

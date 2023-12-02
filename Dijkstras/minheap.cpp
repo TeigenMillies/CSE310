@@ -74,7 +74,7 @@ void MinHeap::heapifyUp(int index) {
         swap index with parent
         update index to parent
     */
-   while (index > 1 && keys[index] < keys[index/2]) {       //CHECK IF WRONG
+   while (index > 0 && keys[index] < keys[index/2]) {       //CHECK IF WRONG
     swap(index, index/2);
     index = index/2;
    }
