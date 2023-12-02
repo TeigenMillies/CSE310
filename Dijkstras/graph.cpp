@@ -276,13 +276,13 @@ void Graph::writePath(int s, int d) {
 
         // Print the shortest path
         cout << "Shortest path: ";
-        for (int i = pathSize; i > 0; i--) {
+        for (int i = pathSize; i >= 0; i--) {
             cout << path[i] << " ";
         }
         cout << endl;
 
         // Print the path weight
-        cout << "The path weight is: " << distance[d];
+        cout << "The path weight is: " << distance[d] << endl;
 
         // Deallocate memory for the path array
         delete[] path;
@@ -320,11 +320,11 @@ void Graph::writePath(int s, int d) {
 
     // Case 3: No s-d path computed, and no min-heap operations were printed
     else if (fullTraversal == false)
-        cout << "No " << s << "-" << d << " path has been computed yet.";
+        cout << "No " << s << "-" << d << " path has been computed yet." << endl;
     
     // Case 4: Entire graph has been traversed, and d is not in extracted or relaxed
     else
-        cout << "No " << s << "-" << d << " path exists.";
+        cout << "No " << s << "-" << d << " path exists." << endl;
 }
 
 void Graph::printAdjacencyLists() {
