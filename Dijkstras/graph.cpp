@@ -194,6 +194,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
         // Extract the minimum distance vertex from the MinHeap
         int u = minHeap.pop();
         
+
         // Mark the vertex as extracted
         extracted[u] = true;
         extractedVertices[u] = distance[u];
@@ -204,8 +205,6 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
             printf(", key=%12.4f\n", distance[u]);
             //minHeap.print();
         }
-
-            //cout << "Delete vertex " << u << ", key= " << distance[u] << endl;
 
         
         // If the destination is reached, exit the loop
@@ -231,7 +230,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
 
                     // If flag is set, print decrease key operation
                     if (oldDistance != DOUBLE_MAX && flag == 1) {
-                        printf("Decrease key of vertext %d", v);
+                        printf("Decrease key of vertex %d", v);
                         printf(", from%13.4f", oldDistance);
                         printf(" to%13.4f\n", distance[v]);
                         //cout << "Decrease key of vertex " << v << ", from " << oldDistance << " to " << distance[v] << endl;
