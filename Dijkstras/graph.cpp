@@ -345,7 +345,7 @@ void Graph::writePath(int s, int d) {
 
     // Case 3: No s-d path computed, and no min-heap operations were printed
     else if (fullTraversal == false)
-        printf("No %d-%d path has been computed yet.\n", s, d);
+        printf("No %d-%d path has been computed, yet.\n", s, d);
         //cout << "No " << s << "-" << d << " path has been computed yet." << endl;
     
     // Case 4: Entire graph has been traversed, and d is not in extracted or relaxed
