@@ -185,6 +185,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
     if (flag == 1) {
         printf("Insert vertex %d", source);
         printf(", key=%12.4f\n", distance[source]);
+        minHeap.print();
         //cout << "Insert vertex " << source << ", key= " << distance[source] << endl;
     }
 
@@ -201,6 +202,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
         if (flag == 1) {
             printf("Delete vertex %d", u);
             printf(", key=%12.4f\n", distance[u]);
+            minHeap.print();
         }
 
             //cout << "Delete vertex " << u << ", key= " << distance[u] << endl;
@@ -241,6 +243,7 @@ void Graph::runDijkstra(int newSource, int destination, int flag) {
                     // If flag is set, print insertion of vertex
                     if (flag == 1) {
                         printf("Insert vertex %d, key=%12.4f\n", v, distance[v]);
+                        minHeap.print();
                         //cout << "Insert vertex " << v << ", key= " << distance[v] << endl;
                     }
                 }

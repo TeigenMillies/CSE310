@@ -8,6 +8,7 @@ public:
     void push(double key, int value);
     int pop();
     bool empty() const;
+    void print();
 
 private:
     double* keys; // Array to store weights of edges

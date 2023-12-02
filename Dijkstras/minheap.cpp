@@ -1,5 +1,7 @@
 #include "minheap.h"
+#include <iostream>
 
+using namespace std;
 
 MinHeap::MinHeap() {
     //set pointers to nullptr
@@ -34,6 +36,7 @@ void MinHeap::push(double key, int value) {
     keys[size - 1] = key;
     values[size - 1] = value;
     heapifyUp(size - 1);            //inputs size in 0-index. GIVES THE VALUE IN THE ARRAY
+    
 }
 
 int MinHeap::pop() {
@@ -55,6 +58,7 @@ int MinHeap::pop() {
     values[0] = values[size - 1];
     size--;
     heapifyDown(0);
+    
 
     return root;
 }
@@ -108,4 +112,13 @@ void MinHeap::swap(int i, int j) {
     int temp1 = values[i];
     values[i] = values[j];
     values[j] = temp1;
+}
+
+void MinHeap::print() {
+
+    cout << "MINHEAP: ";
+    for (int i = 0; i < size ; i++) {
+        cout << "(" << values[i] << ", " << keys[i] << ") ";
+    }
+    cout << endl;
 }
